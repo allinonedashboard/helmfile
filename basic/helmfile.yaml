@@ -1,0 +1,242 @@
+repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: prometheus
+    url: https://prometheus-community.github.io/helm-charts
+  - name: stable
+    url: https://charts.helm.sh/stable
+
+apiVersions:
+  - monitoring.coreos.com/v1
+
+helmDefaults:
+  wait: true
+  timeout: 600
+  force: true
+  createNamespace: true
+
+commonLabels:
+  name: mycompany
+
+releases:
+  - name: nginx
+    chart: bitnami/nginx
+
+  - name: prometheus
+    labels:
+      job: prometheus
+      namespace: monitoring
+    namespace: monitoring
+    chart: prometheus/prometheus
+    version: 22.6.2
+    set:
+      - name: rbac.create
+        value: false
+
+  - name: prometheus-state-metrics
+    labels:
+      job: metrics
+      namespace: monitoring
+    namespace: monitoring
+    chart: prometheus/kube-state-metrics
+    version: 5.8.0
+
+  - name: prometheus-adapter
+    labels:
+      job: adapter
+      namespace: monitoring
+    namespace: monitoring
+    chart: prometheus/prometheus-adapter
+    version: 4.2.0
+
+  - name: prometheus-blackbox-exporter
+    labels:
+      job: prometheus-blackbox-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-blackbox-exporter
+    version: 7.10.0
+
+  - name: prometheus-cloudwatch-exporter
+    labels:
+      job: prometheus-cloudwatch-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-cloudwatch-exporter
+
+  - name: prometheus-consul-exporter
+    labels:
+      job: prometheus-consul-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-consul-exporter
+
+  - name: prometheus-couchdb-exporter
+    labels:
+      job: prometheus-couchdb-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-couchdb-exporter
+
+  - name: prometheus-druid-exporter
+    labels:
+      job: prometheus-druid-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-druid-exporter
+
+  - name: prometheus-elasticsearch-exporter
+    labels:
+      job: prometheus-elasticsearch-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-elasticsearch-exporter
+
+  - name: prometheus-fastly-exporter
+    labels:
+      job: prometheus-fastly-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-fastly-exporter
+
+  - name: prometheus-json-exporter
+    labels:
+      job: prometheus-json-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-json-exporter
+
+  - name: prometheus-kafka-exporter
+    labels:
+      job: prometheus-kafka-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-kafka-exporter
+    version: 2.2.0
+
+  - name: prometheus-json-exporter
+    labels:
+      job: prometheus-json-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-json-exporter
+
+  - name: prometheus-modbus-exporter
+    labels:
+      job: prometheus-modbus-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-modbus-exporter
+
+  - name: prometheus-mongodb-exporter
+    labels:
+      job: prometheus-mongodb-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-mongodb-exporter
+
+  - name: prometheus-mysql-exporter
+    labels:
+      job: prometheus-mysql-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-mysql-exporter
+
+  - name: prometheus-nats-exporter
+    labels:
+      job: prometheus-nats-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-nats-exporter
+
+  - name: prometheus-nginx-exporter
+    labels:
+      job: prometheus-nginx-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-nginx-exporter
+
+  - name: prometheus-node-exporter
+    labels:
+      job: prometheus-node-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-node-exporter
+    version: 4.17.5
+
+  - name: prometheus-pgbouncer-exporter
+    labels:
+      job: prometheus-pgbouncer-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-pgbouncer-exporter
+
+  - name: prometheus-pingdom-exporter
+    labels:
+      job: prometheus-pingdom-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-pingdom-exporter
+
+  - name: prometheus-pingmesh-exporter
+    labels:
+      job: prometheus-pingmesh-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-pingmesh-exporter
+
+  - name: prometheus-postgres-exporter
+    labels:
+      job: prometheus-postgres-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-postgres-exporter
+
+  - name: prometheus-rabbitmq-exporter
+    labels:
+      job: prometheus-rabbitmq-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-rabbitmq-exporter
+
+  - name: prometheus-redis-exporter
+    labels:
+      job: prometheus-redis-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-redis-exporter
+
+  - name: prometheus-smartctl-exporter
+    labels:
+      job: prometheus-smartctl-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-smartctl-exporter
+
+  - name: prometheus-snmp-exporter
+    labels:
+      job: prometheus-snmp-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-snmp-exporter
+
+  - name: prometheus-stackdriver-exporter
+    labels:
+      job: prometheus-stackdriver-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-stackdriver-exporter
+
+  - name: prometheus-statsd-exporter
+    labels:
+      job: prometheus-statsd-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-statsd-exporter
+
+  - name: prometheus-windows-exporter
+    labels:
+      job: prometheus-windows-exporter
+      type: exporter
+    namespace: monitoring
+    chart: prometheus/prometheus-windows-exporter
