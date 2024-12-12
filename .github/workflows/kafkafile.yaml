@@ -1,0 +1,5 @@
+name: kafkaworkflow
+
+on:
+  push:
+    branches: [ "master" ]
